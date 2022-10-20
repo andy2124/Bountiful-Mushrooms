@@ -7,10 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src= "{% static 'js/api.js' %}" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/fs-js"></script>
     <title>Document</title>
 </head>
 <body>
     <h1>Welcome to Bountiful Mushrooms</h1>
+    {% for m in mush_data %}
+        {{m}}
+    {% endfor %}
     <div id="mushroom-data"> </div>
     </body>
 </html>
