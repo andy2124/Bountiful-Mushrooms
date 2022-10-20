@@ -23,11 +23,10 @@ Bountiful Mushrooms is an application that can be used as a source of informatio
 |username| CharField|max_length=23,unique=True|
 |title | Charfield| max length = 50
 |user    |Foriegnkey|null=True|
-|picture|ImageField|    |
+|image| URLfield| max_length=50    |
 |is_superuser|BooleanField|default=False|
-|date created |DateTimeField|
-|date edited| DateTimeField|
-|Coordniates| 
+|date |DateTimeField| auto_now = True
+|Location|models.Char.Field | max_length=50 
 </br>
 ## Schedule
 - Week 1 - search API or how to build one, if api is f``ound learn how to use it. start backend work how it needs to look 

@@ -40,4 +40,11 @@ function renderMushroomData(response){
     }
     
 }
+
 getData()
+
+
+
+
+
+ 
