@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Document</title>
 </head>
-<body style="background-image:linear-gradient(to right, olive, rgb(132, 105, 105)">
+<body style="background-image:linear-gradient(to right, olive, grey)">
     <!-- card -->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -48,6 +48,7 @@
               <h5 class="card-title">{{m.mushroom_name}}</h5>
               <p class="card-text">{{m.location}}</p>
               <a href="#" class="btn btn-secondary">See Location</a>
+              <p class="card-text">{{m.latitude_south}}</p>
             </div>
           </div>
           <br><br><br>
