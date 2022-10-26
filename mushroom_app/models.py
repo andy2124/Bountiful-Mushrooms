@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Mushroom(models.Model):
     date = models.DateTimeField(auto_now=True)
@@ -13,3 +15,5 @@ class Mushroom(models.Model):
     def __str__(self):
         return f'{self.mushroom_name} -- {self.date}'
 
+class User(models.Model):
+    pass
