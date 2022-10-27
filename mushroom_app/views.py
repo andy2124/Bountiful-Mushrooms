@@ -1,16 +1,16 @@
-import re
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http.response import HttpResponse
-from flask import g 
-import requests as fetch 
 from . import models 
 from django.http import JsonResponse
 import json
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from.forms import *
 from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, get_user_model
+
 
 def index(request):
     mushroom_data = models.Mushroom.objects.all()
@@ -36,37 +36,70 @@ def signup(request):
                 email = form.cleaned_data['email'],
                 password = form.cleaned_data['password'],
             )
-        return HttpResponseRedirect(reverse('signup'))
+        return HttpResponseRedirect(reverse('mushroom_app:signup'))
 
 def user_login(request):
-    if request.method == 'GET':
-        return render(request, 'mushroom_app/login.html', {
+    if request.method == "GET":
+        return render(request, 'mushroom_app/login.html',{
             'form': NewLoginIn()
+            
         })
-    elif request.method == 'POST':
-       form = NewLoginIn(request.POST)
-       if form.is_valid():
-           password = form.cleaned_data['password'],
-           user = authenticate(request, username=form.cleaned_data['username'], password=password)
-           if user is not None:
-               login(request, user)
-               print(user,'user')
-               print(request,'request')
-               return HttpResponseRedirect(reverse('profile')) 
-           else:
-               form.add_error('username', 'invalid credentials')
-               return render(request, 'mushroom_app/login.html',{
-                   'form': form
-               })
+# def user_login(request):
+    
+       
+#     if request.method == 'POST':
+#        form = NewLoginIn(request.POST)
+#        if form.is_valid():
+#            password = form.cleaned_data['password'],
+#            user = authenticate(request, username=form.cleaned_data['username'], password=password)
+#            if user is not None:
+#                login(request, user)
+#                print(user,'user has been logged in ')
+#                print(request,'request')
+#                return HttpResponseRedirect(reverse('profile',)) 
+#            else:
+#                form.add_error('username', 'invalid credentials')
+#                return render(request, 'mushroom_app/login.html',{
+#                    'form': form
+#                })
+#     return render(request, 'mushroom_app/login.html', {
+#         'form': NewLoginIn()
+#         })
 
-def profile(request):
-    return render(request, 'mushroom_app/profile.html')
+# def profile(request, username):
+#     if request.method == 'GET':
 
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('mushroom_app:login'))
+#         user = get_object_or_404(get_user_model(), username=username)
+
+#         context = {
+
+#         'username': user.username,
+        
+#         }   
+#     print('we made it to the profile')
+#     # return render(request, 'mushroom_app/profile.html')
+#     return redirect(reverse('mushroom_app:profile', kwargs={ 'username': user.username}))
+
+# def user_logout(request):
+#     logout(request)
+#     return redirect(reverse('mushroom_app:login'))
 
 
+# def register(request):
+# 	if request.method == "POST":
+# 		form = NewUserForm(request.POST)
+# 		if form.is_valid():
+# 			user = form.save()
+# 			login(request, user)
+# 			messages.success(request, "Registration successful." )
+# 			return redirect("accounts:profile")
+# 		messages.error(request, "Unsuccessful registration. Invalid information.")
+# 	form = NewUserForm()
+# 	return render(request=request, template_name="registration/register.html", context={"form":form})
+
+# @login_required
+# def profile(request):
+#     return render(request, 'registration/profile.html', {'user': request.user})
 
 # def home(request):
 #     url = ('https://mushroomobserver.org/api2/observations?detail=high')
