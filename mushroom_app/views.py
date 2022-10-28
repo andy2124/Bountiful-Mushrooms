@@ -26,11 +26,9 @@ def register(request):
 		form = NewSignUpForm(request.POST)
 		print(form,'form')
 		if form.is_valid():
-		# if form:
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			# return redirect("registration/profile")
 			return redirect('mushroom_app:profile')
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	else:
@@ -45,8 +43,8 @@ def profile(request):
 def user_logout(request):
 	logout(request)
 	return render(request, 'registration/login.html')
-  	# return render(request, 'registration/profile.html')
 	
+
 # def signup(request):
 #     if request.method == "GET":
 #         form = NewSignUpForm()
