@@ -1,15 +1,19 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
 app_name = "mushroom_app" 
 urlpatterns = [
     path('mushroom/', views.index, name='index'),
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.user_login, name='login'),
-    # path('logout/', views.user_logout, name='logout'),
+    path('accounts/profile/', views.profile, name='profile'),
+    path('accounts/logout/', views.user_logout, name='logout'),
+    path('accounts/register/', views.register, name='register'),
+    # path('signup/', views.signup, name='signup'),
+    # path('login/', views.login, name='login'),
+    # path('accounts/', include("django.contrib.auth.urls")),
+
     # path('profile/', views.profile, name='profile'),
     
     #  path('', views.home, name='home'),
-    # path('profile/<str:username>', views.profile, name='profile'),
     
 
 ]

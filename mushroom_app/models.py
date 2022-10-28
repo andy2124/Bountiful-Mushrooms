@@ -15,5 +15,5 @@ class Mushroom(models.Model):
     def __str__(self):
         return f'{self.mushroom_name} -- {self.date}'
 
-class User(models.Model):
-    pass
+# class User(models.Model):
+#     pass
