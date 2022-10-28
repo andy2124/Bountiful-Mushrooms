@@ -24,13 +24,17 @@ def index(request):
 def register(request):
 	if request.method == "POST":
 		form = NewSignUpForm(request.POST)
+		print(form,'form')
 		if form.is_valid():
+		# if form:
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("registration/profile")
+			# return redirect("registration/profile")
+			return redirect('mushroom_app:profile')
 		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewSignUpForm()
+	else:
+		form = NewSignUpForm()
 	return render(request=request, template_name="registration/register.html", context={"form":form})
 
 @login_required

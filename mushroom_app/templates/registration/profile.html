@@ -8,11 +8,8 @@
 </head>
 <body>
     <h1>Welcome {{request.user}}</h1>
-    <a href="{% url 'mushroom_app:logout' %}">logout</a>
+    <a href="{% url 'logout' %}">logout</a>
 </body>
 </html>
 
 
-{% comment %}
-'mushroom_app:logout going to app name to go to right route of logout. to go to right route
-{% end comment %}
