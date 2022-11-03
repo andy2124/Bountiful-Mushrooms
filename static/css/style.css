@@ -1,0 +1,11 @@
+body {
+    /* background-color: aqua; */
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ySEGJQbI7195I8d-BQde_iFjMV2RWLGoWw&usqp=CAU');
+    background-repeat: repeat;
+    background-size: 500px;
+    
+}
+
+.container{
+margin-top: 90px;
+}
