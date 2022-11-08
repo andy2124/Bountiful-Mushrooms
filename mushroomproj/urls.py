@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mushroom_app.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('api/',include('api.urls'))
 ]
 
 

@@ -9,16 +9,18 @@
 </head>
 <body>
     <div class="container">
+        <div class="bg-secondary">
 
-        <div class="card mx-auto mt-4" style="width: 18rem;">
-            <div class="card-body">
-
-                <h5 class="card-title">Register</h5>
-                <form action="{% url 'mushroom_app:register' %}" method="POST">
-                    {% csrf_token %} 
-                    {{ form.as_p }}
-                    <button>Sign Up</button>
-                </form>
+            <div class="card mx-auto mt-4" style="width: 18rem;">
+                <div class="card-body">
+    
+                    <h5 class="card-title">Register</h5>
+                    <form action="{% url 'mushroom_app:register' %}" method="POST">
+                        {% csrf_token %} 
+                        {{ form.as_p }}
+                        <button>Sign Up</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -1,17 +1,9 @@
-import re
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http.response import HttpResponse
-from matplotlib.style import context
-from . import models 
-from django.http import JsonResponse
-import json
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import *
-from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from json import dumps
 
 
 def index(request):
@@ -45,7 +37,7 @@ def profile(request):
 	form = NewMushroomForm()
 	context = {
 		'form': form, 
-		'mushroom':  Mushroom.objects.filter(user = request.user)
+		'mushroom':  Mushroom.objects.order_by('-date').filter(user = request.user)
 	}
 	if request.method == "POST":
 		form = NewMushroomForm(request.POST)
@@ -79,3 +71,23 @@ def delete(request, mushroom_id): #mushroom could be anything
 	mushroom = get_object_or_404(Mushroom, id= mushroom_id, user=request.user)
 	mushroom.delete()
 	return redirect('mushroom_app:index')
+
+
+
+
+def mushroom_question(request):
+	data = [
+		["MN", "Morchella esculenta (current)"],#MINESOTA
+		["OR", "Cantharellus formosus (current)"],#OREGON
+		["TX", "Chorioactis geaster (current)"],#TEXAS
+		["MA", "Calvatia gigantea"],#MASSACHUSETS
+		["MO", "Cantharellus lateritius"],#MISSORRI	
+		["NY", "Lactarius peckii"],#NEW YORK
+		["WA", "Tricholoma magnivelare"],#WASHINTON
+
+
+	]
+	data = dumps(data)
+	return render(request, "mushroom_app/mushroom_data.html", {"data": data})
+
+

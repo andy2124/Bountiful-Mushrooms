@@ -8,5 +8,6 @@ urlpatterns = [
     path('accounts/register/', views.register, name='register'),
     path('accounts/item/', views.new_mushroom, name='new_mushroom'),
     path('accounts/delete/<int:mushroom_id>', views.delete, name='delete'),
+    path('accounts/data/',views.mushroom_question, name='data' )
     
 ]
