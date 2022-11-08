@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
-    <h1>Welcome {{request.user}}</h1>
-    <a href="{% url 'logout' %}">logout</a>
+
+<body >
+  <div class="bg-dark text-muted">
+
+    <!-- card -->
+    <nav class="navbar navbar-expand-lg bg-secondary ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Bountiful Mushrooms</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="{% url 'mushroom_app:index' %}">Home</a>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'logout' %}">logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+<h1>Welcome {{request.user}}</h1>
+<form action="{% url 'mushroom_app:new_mushroom' %}" method="POST">
+    {%csrf_token%}
+    {{form}}
+    <input type="submit" value="new mushroom" name="">
+    <br><br>
+</form>
+{% for m in mushroom %}
+<div class="card mx-auto" style="width: 25rem; ">
+    <img src="{{m.image}}" class="card-img-top ali" alt="...">
+    <div class="card-body ">
+        <h5 class="card-title">{{m.user}}</h5>
+        <h5 class="card-title">{{m.mushroom_name}}</h5>
+        <p class="card-text">{{m.location}}</p>
+        <a href="#" class="btn btn-secondary">See Location</a>
+    </div>
+    <div>
+      {% if request.user == m.user %}
+      <a href="{% url 'mushroom_app:delete' m.id%}">❌ Delete</a>
+      {% endif %}
+      
+    </div>
+</div>
+<br><br><br>
+
+{% endfor %}
+  </div>
+
+    <!-- <a href="{% url 'logout' %}">logout</a> -->
 </body>
+
 </html>
-
-

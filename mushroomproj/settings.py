@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     
     'mushroom_app',
     'corsheaders',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +140,11 @@ AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
         
     )
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login'

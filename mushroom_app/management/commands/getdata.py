@@ -11,10 +11,7 @@ class Command(BaseCommand):
         with open("mushrooms.json") as f:
             mushroom_data = json.loads(f.read())
             
-            # print(mushroom_data, 'testing mushroom data')
-        # f = open('mushrooms.json')
-        # mushie = json.loads(f.read())
-        # print(mushie) look at pokedex/pokemon.managment file in code
+
         for mushy in mushroom_data['results']:
             mushroom = Mushroom()
             mushroom.date = mushy['date'] 
@@ -27,8 +24,7 @@ class Command(BaseCommand):
             mushroom.image = mushy['primary_image']['original_url']
             mushroom.save()
 
-            # mushroom.latitude_north = mushy[0]
-            # print(mushroom, 'mushroom')
+
             print(mushroom.date, 'mushy')
             print(mushroom.mushroom_name,'mush name')
             print(mushroom.latitude_north,'north')
@@ -37,3 +33,12 @@ class Command(BaseCommand):
             print(mushroom.longitude_west,'west')
             print(mushroom.location,'location')
             print(mushroom.image,'image')
+
+
+
+
+
+            # print(mushroom_data, 'testing mushroom data')
+        # f = open('mushrooms.json')
+        # mushie = json.loads(f.read())
+        # print(mushie) look at pokedex/pokemon.managment file in code
